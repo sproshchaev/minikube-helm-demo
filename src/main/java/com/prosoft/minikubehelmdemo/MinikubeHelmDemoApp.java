@@ -1,4 +1,4 @@
-package com.prosoft.minikube_helm_demo;
+package com.prosoft.minikubehelmdemo;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
