@@ -3,6 +3,53 @@
 
 (cloud-native подход)
 
+# 1. Получить всех пользователей
+```bash
+curl http://localhost:8080/api/users
+```
+
+# 2. Создать нового пользователя
+```bash
+curl -X POST http://localhost:8080/api/users \
+-H "Content-Type: application/json" \
+-d '{
+"name": "Сергей Иванов",
+"email": "sergey@example.com",
+"latitude": 55.751244,
+"longitude": 37.618423
+}'
+```
+
+# 3. Получить пользователя по ID
+```bash
+curl http://localhost:8080/api/users/1
+```
+
+# 4. Поиск пользователей по имени
+```bash
+curl "http://localhost:8080/api/users/search?name=Сергей"
+```
+
+# 5. Получить количество пользователей
+```bash
+curl http://localhost:8080/api/users/count
+```
+
+# 6. Обновить пользователя
+```bash
+curl -X PUT http://localhost:8080/api/users/1 \
+-H "Content-Type: application/json" \
+-d '{
+"name": "Сергей Обновленный",
+"email": "sergey.updated@example.com"
+}'
+```
+
+# 7. Удалить пользователя
+```bash
+curl -X DELETE http://localhost:8080/api/users/1
+```
+
 # 🗺️ Дорожная карта проекта: Minikube Helm Demo
 
 ## 🎯 Цель проекта

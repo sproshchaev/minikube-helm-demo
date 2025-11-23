@@ -1,0 +1,77 @@
+spring:
+  application:
+    name: minikube-helm-demo
+
+  # ????????? Datasource ??? Docker PostgreSQL
+  datasource:
+    url: jdbc:postgresql://localhost:5432/helm_demo
+    username: postgres
+    password: postgres123
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      maximum-pool-size: 10
+      minimum-idle: 2
+      connection-timeout: 30000
+      idle-timeout: 300000
+
+  # JPA Configuration
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+        jdbc:
+          lob:
+            non_contextual_creation: true
+    open-in-view: false
+
+  # SQL Initialization
+  sql:
+    init:
+      platform: postgresql
+      mode: always
+
+# Server Configuration
+server:
+  port: 8080
+  servlet:
+    context-path: /
+  compression:
+    enabled: true
+
+# Logging Configuration
+logging:
+  level:
+    com.prosoft.minikube.helm.demo: DEBUG
+    org.hibernate.SQL: DEBUG
+    org.springframework.web: INFO
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+
+# Spring Boot Actuator (Health Checks)
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+      base-path: /actuator
+  endpoint:
+    health:
+      show-details: always
+      show-components: always
+    info:
+      enabled: true
+
+# Jackson Configuration
+jackson:
+  property-naming-strategy: SNAKE_CASE
+  serialization:
+    write-dates-as-timestamps: false
+  date-format: yyyy-MM-dd HH:mm:ss
+  time-zone: UTC
+
+# Debug mode for development
+debug: false
